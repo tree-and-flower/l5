@@ -1,0 +1,13 @@
+# Laravel
+
+# Configuration
+.env
+
+# Composer
+composer.phar
+composer.lock
+
+# OS
+.DS_Store
+.idea/
+Thumbs.db

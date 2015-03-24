@@ -1,0 +1,46 @@
+@extends('framework')
+
+@section('content')
+<div class="container">
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <div class="login-panel panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">欢迎您注册为新用户</h3>
+            </div>
+            <div class="panel-body">
+                @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    登录出现一下错误:<br><br>
+                    <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                    </ul>
+                </div>
+                @endif
+                <form role="form" method="POST" action="{{ url('/auth/register') }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <fieldset>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="用户名" name="name" type="text" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="邮箱" name="email" type="email" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="密码" name="password" type="password" value="">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="密码确认" name="password_confirmation" type="password" value="">
+                        </div>
+                        <button type="submit" class="btn btn-lg btn-success btn-block">注册</button>
+                        <a class="btn btn-link" href="{{ url('/auth/register') }}">登录</a>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+@endsection
