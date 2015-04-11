@@ -1,0 +1,8 @@
+<?php
+
+return [
+    'appId'          => '', // 必填
+    'secret'         => '', // 必填
+    'token'          => '',  // 必填
+    'encodingAESKey' => 'Your encoding AES Key' // 加密模式需要，其它模式不需要
+];
