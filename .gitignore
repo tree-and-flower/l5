@@ -1,6 +1,7 @@
 # Laravel
 # Configuration
 .env
+config/wechat.php
 
 # Composer
 composer.phar
