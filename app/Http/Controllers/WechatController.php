@@ -1,8 +1,13 @@
 <?php 
 namespace APP\Http\Controllers;
 use Overtrue\Wechat\Services\Message;
+use Overtrue\Wechat\Services\Menu;
 
 class WechatController extends Controller {
+
+    public function __construct(){
+        $this->wc = \App::make('wechat');
+    }
 
     /*
      * 处理微信的请求信息
@@ -10,7 +15,7 @@ class WechatController extends Controller {
      * @return string
      */
     public function serve(){
-        \Wechat::on('message', function($message){
+        $this->wc->message('image', function($message){
             /*
             return  Message::make('news')->items(function(){
                 return array(
@@ -21,14 +26,42 @@ class WechatController extends Controller {
                 );
             });
              */
-            if($message->MsgType == 'text'){
-                return Message::make('text')->content($message->Content);
-            }else if ($message->MsgType == 'voice'){
-                return Message::make('text')->content('voice' . $message->MediaId);
+                return Message::make('text')->content($message->PicUrl);
                 //return Message::make('voice')->media($message->MediaId);
-            }
             //\Log::info("receive from {$message['FromUserName']}:{$message['Content']}");
         });
-        return \Wechat::serve();
+        $this->wc->event(function ($event){
+                return Message::make('text')->content(serialize($event));
+        });
+        return $this->wc->serve();
+    }
+
+    /**
+     * 设置菜单
+     */
+    public function setMenu(){
+        $menus = array(
+            Menu::make("门票")->buttons(array(
+                Menu::view('海洋世界', 'http://www.meituan.com/deal/28664106.html'),
+                Menu::view('世界之窗', 'http://www.meituan.com/deal/28664106.html'),
+            )),
+            Menu::make("线路")->buttons(array(
+                Menu::view('欧洲游', 'http://bjsz4.package.qunar.com/user/detail.jsp?id=2039777643#tf=%E5%8C%97%E4%BA%AC%5F%E6%99%AE%E5%90%89%E5%B2%9B%5F149'),
+                Menu::view('新马泰路线', 'http://bjsz4.package.qunar.com/user/detail.jsp?id=2039777643#tf=%E5%8C%97%E4%BA%AC%5F%E6%99%AE%E5%90%89%E5%B2%9B%5F149'),
+            )),
+            Menu::make("服务")->buttons(array(
+                Menu::click('在线咨询', 'V1001_GOOD'),
+                Menu::view('公司简介', 'http://wd.koudai.com/?userid=213348970'),
+                Menu::view('门票O2O模式', 'http://www.netjun.com/tag/%E9%97%A8%E7%A5%A8'),
+            )),
+        );
+
+        try {
+            $objMenu = new Menu();
+            $objMenu->set($menus);// 请求微信服务器
+            echo '设置成功！';
+        } catch (\Exception $e) {
+            echo '设置失败：' . $e->getMessage();
+        }
     }
 }

@@ -18,14 +18,11 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
-//wechat
-Route::any('/wechat', 'WechatController@serve');
 //微信
-Route::group(array('prefix' => 'weixin'),function()
+Route::group(array('prefix' => 'wechat'),function()
 {
-    Route::resource('/','WeixinController');
-    Route::get('card',array('uses'=>'WeixinController@card'));
-    Route::post('card',array('uses'=>'WeixinController@card'));
+    Route::any('/', 'WechatController@serve');
+    Route::get('/setMenu', 'WechatController@setMenu');
 });
 //404
 Route::get('404', function()
