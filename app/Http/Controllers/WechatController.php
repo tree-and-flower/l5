@@ -1,5 +1,5 @@
 <?php 
-namespace APP\Http\Controllers;
+namespace App\Http\Controllers;
 use Overtrue\Wechat\Services\Message;
 use Config;
 use Log;
