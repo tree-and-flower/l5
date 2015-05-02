@@ -1,4 +1,4 @@
-@extends('framework')
+@extends('framework-admin')
 
 @section('content')
 <div class="container">
@@ -23,9 +23,11 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <fieldset>
                         <div class="form-group">
+                            <label class="control-label">邮箱</label>
                             <input class="form-control" placeholder="邮箱" name="email" type="email" autofocus>
                         </div>
                         <div class="form-group">
+                            <label class="control-label">密码</label>
                             <input class="form-control" placeholder="密码" name="password" type="password" value="">
                         </div>
                         <div class="checkbox">
@@ -35,8 +37,8 @@
                         </div>
                         <!-- Change this to a button or input when using this as a form -->
                         <button type="submit" class="btn btn-lg btn-success btn-block">登录</button>
-                        <a class="btn btn-link" href="{{ url('/password/email') }}">忘记密码?</a>
-                        <a class="btn btn-link" href="{{ url('/auth/register') }}">注册</a>
+                        <!-- <a class="btn btn-link" href="{{ url('/password/email') }}">忘记密码?</a> -->
+                        <!-- <a class="btn btn-link" href="{{ url('/auth/register') }}">注册</a> -->
                     </fieldset>
                 </form>
             </div>

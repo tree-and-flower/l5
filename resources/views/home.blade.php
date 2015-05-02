@@ -1,4 +1,4 @@
-@extends('framework')
+@extends('framework-admin')
 
 @section('content')
 {{--

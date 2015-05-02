@@ -19,6 +19,9 @@
                 <a href="#"><i class="fa fa-sitemap fa-fw"></i> 景点管理<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
+                            <a href="#">海洋世界</a>
+                        </li>
+                        <li>
                             <a href="#">世界之窗</a>
                         </li>
                         <li>
@@ -26,12 +29,6 @@
                         </li>
                         <li>
                             <a href="#">锦绣中华</a>
-                        </li>
-                        <li>
-                            <a href="#">华侨城</a>
-                        </li>
-                        <li>
-                            <a href="#">中英街</a>
                         </li>
                         <li>
                             <a href="#">其他 <span class="fa arrow"></span></a>

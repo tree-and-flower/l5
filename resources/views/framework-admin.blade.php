@@ -9,7 +9,7 @@
 
     <title>
         @section('title')
-            同行旅游景点门票预约系统
+            同行旅游票务管理系统
         @show
     </title>
 
@@ -36,7 +36,24 @@
 
 <body>
 
-    @yield('content')
+    @if (Auth::guest())
+        @yield('content')
+    @else
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            @include('include.navbar')
+            @include('include.sidebar')
+        </nav>
+
+        <div id="page-wrapper">
+            @include('include.breadcrumb')
+            @yield('content')
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    @endif
     <!-- /#wrapper -->
 
     <!-- jQuery -->

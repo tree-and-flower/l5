@@ -13,6 +13,9 @@
 
 Route::get('/', 'HomeController@index');
 Route::get('home', 'HomeController@index');
+Route::get('book/{jingdian?}/{shangjia?}', 'BookController@getBook')->where(['jingdian' => '[0-9]+', 'shangjia' => '[0-9]+']);
+Route::post('book', 'BookController@postBook');
+
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
