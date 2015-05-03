@@ -18,30 +18,11 @@
             <li>
                 <a href="#"><i class="fa fa-sitemap fa-fw"></i> 景点管理<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
+                        @foreach (Config::get('tongxing.jingdian') as $k => $v) 
                         <li>
-                            <a href="#">海洋世界</a>
+                            <a href="/jingdian/{{$k}}">{{$v}}</a>
                         </li>
-                        <li>
-                            <a href="#">世界之窗</a>
-                        </li>
-                        <li>
-                            <a href="#">欢乐谷</a>
-                        </li>
-                        <li>
-                            <a href="#">锦绣中华</a>
-                        </li>
-                        <li>
-                            <a href="#">其他 <span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li>
-                                        <a href="#">大梅沙</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">小梅沙</a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-third-level -->
-                        </li>
+                        @endforeach
                     </ul>
                 <!-- /.nav-second-level -->
             </li>

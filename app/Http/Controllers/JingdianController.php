@@ -5,8 +5,15 @@ use DB;
 use App\Customer;
 use Input;
 use Log;
-class BookController extends Controller {
+class JingdianController extends Controller {
 
+    public function getJingdian($jingdian=1){
+        $jingdianConf = Config::get('tongxing.jingdian');
+        $shangjiaConf = Config::get('tongxing.shangjia');
+        $customers = Customer::where('jingdian', $jingdian)->get();
+        return view('jingdian', ['jingdianConf' => $jingdianConf, 'shangjiaConf' => $shangjiaConf, 'jingdian' => $jingdian, 'customers' => $customers]);
+        
+    }
     public function getBook($jingdian=0,$shangjia=0){
         $jingdianConf = Config::get('tongxing.jingdian');
         $shangjiaConf = Config::get('tongxing.shangjia');
