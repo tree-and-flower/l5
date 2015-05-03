@@ -4,21 +4,11 @@
 <div class="container">
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
-        <div class="login-panel panel panel-default">
+        <div class="book-panel panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">欢迎使用同行旅游网预约系统</h3>
+                <h3 class="panel-title">欢迎使用同行网预约系统</h3>
             </div>
             <div class="panel-body">
-                @if (count($errors) > 0)
-                <div class="alert alert-danger">
-                    登录出现一下错误:<br><br>
-                    <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                    </ul>
-                </div>
-                @endif
                 <form role="form" method="POST">
                     <fieldset>
                         <div class="form-group">
@@ -39,15 +29,15 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">出行日期</label>
-                            <input class="form-control" placeholder="" name="travel_at" id="travel_at" type="text" autofocus>
+                            <input class="form-control" placeholder="点击选择出行日期" style="background-color:#FFF" name="travel_at" id="travel_at" type="text" readonly="readonly" >
                         </div>
                         <div class="form-group">
                             <label class="control-label">主要联系人</label>
-                            <input class="form-control" placeholder="请输入主要联系人姓名" name="name" id="name" type="text" autofocus>
+                            <input class="form-control" placeholder="请输入主要联系人姓名" name="name" id="name" type="text">
                         </div>
                         <div class="form-group">
                             <label class="control-label">手机</label>
-                            <input class="form-control" placeholder="请输入主要联系人手机" name="telephone" id="telephone" type="text" autofocus>
+                            <input class="form-control" placeholder="请输入主要联系人手机" name="telephone" id="telephone" type="text">
                         </div>
                         <div class="form-group">
                             <label class="control-label">团购券号(多个券号以逗号，分隔)</label>
@@ -67,6 +57,18 @@
 </div>
 @endsection
 @section('js')
+<script type="text/javascript" src="/js/laydate.js"></script>
+<script type="text/javascript">
+!function(){
+    laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
+    laydate({
+        elem: '#travel_at',
+            festival: true, //显示节日
+            min: laydate.now(+1), 
+    });
+}();
+
+</script>
 <script>
 $(document).ready(function(){
     $('#book').click(function(){

@@ -213,6 +213,9 @@ body {
 .login-panel {
     margin-top: 25%;
 }
+.book-panel {
+    margin-top: 5%;
+}
 
 .flot-chart {
     display: block;

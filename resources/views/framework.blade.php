@@ -9,7 +9,7 @@
 
     <title>
         @section('title')
-            同行旅游景点门票预约系统
+            同行网门票预约系统
         @show
     </title>
 
