@@ -10,32 +10,151 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                票数管理 
+            <form class="form-inline" method="get">
+                <span>商家</span>
+                <select id="shangjiaSelect" name="shangjia" class="form-control">
+                    <option value="0" @if ($shangjia == 0) selected="selected" @endif>全部</option>
+                    @foreach ($shangjiaConf as $k => $v)
+                        <option value="{{$k}}" @if($shangjia == $k) selected="selected" @endif>{{$v}}</option>
+                    @endforeach
+                </select>
+                <span>验证</span>
+                <select id="isVerifySelect" name="is_verify" class="form-control">
+                    <option value="-1" @if ($is_verify == -1) selected="selected" @endif>全部</option>
+                    <option value="0" @if ($is_verify == 0) selected="selected" @endif>未验证</option>
+                    <option value="1" @if ($is_verify == 1) selected="selected" @endif>已验证</option>
+                </select>
+                <input type="text" name="name" value="{{$name}}" class="form-control" placeholder="联系人">
+                <input type="text" name="telephone" value="{{$telephone}}" class="form-control" placeholder="手机">
+                <input type="submit" value="查询" class="btn btn-info">
+            </form>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <div class="dataTable_wrapper">
-                    <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="dataTables-example_length"><label>Show <select name="dataTables-example_length" aria-controls="dataTables-example" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-6"><div id="dataTables-example_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="dataTables-example"></label></div></div></div><div class="row"><div class="col-sm-12"><table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
-                        <thead>
-                            <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 175px;">名称</th><th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 200px;">时间</th><th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 182px;">人数</th><th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 152px;">票价</th><th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 111px;">折扣</th></tr>
-                        </thead>
-                        <tbody>   
-                        @foreach ($customers as $one)
-                        <tr class="gradeA odd" role="row">
-                                <td class="sorting_1">{{$one->name}}</td>
-                                <td>{{$one->telephone}}</td>
-                                <td>{{$one->travel_at}}</td>
-                                <td>{{$one->ticket}}</td>
-                                <td>{{$one->info}}</td>
-                        </tr>
-                        @endforeach
-</tbody>
-                    </table></div></div><div class="row"><div class="col-sm-6"><div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-6"><div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate"><ul class="pagination"><li class="paginate_button previous disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous"><a href="#">Previous</a></li><li class="paginate_button active" aria-controls="dataTables-example" tabindex="0"><a href="#">1</a></li><li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">2</a></li><li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">3</a></li><li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">4</a></li><li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">5</a></li><li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">6</a></li><li class="paginate_button next" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next"><a href="#">Next</a></li></ul></div></div></div></div>
-                </div>
-                <!-- /.table-responsive -->
+<div class="widget-box">
+    <div class="widget-content nopadding">
+        <div role="grid" class="dataTables_wrapper" id="DataTables_Table_0_wrapper">
+            <table class="table table-bordered table-striped table-hover with-check">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>商家</th>
+                        <th>联系人</th>
+                        <th>手机</th>
+                        <th>出行日期</th>
+                        <th>下单日期</th>
+                        <th>卷号</th>
+                        <th> 验证</th>
+                        <th>备注</th>
+                        <th class="op" style="width:120px">操作</th>
+                    </tr>
+                </thead>
+                <tbody id="sortableTable">
+                    @foreach ($customers as $one)
+                    <!--tr @if ($one->is_verify == 0)style="color: #E72020;"@endif -->
+                    <tr @if ($one->is_verify == 1) class="success" @endif >
+                        <td>
+                            {{$one->id}}
+                        </td>
+                        <td>
+                            {{$shangjiaConf[$one->shangjia]}}
+                        </td>
+                        <td>
+                            {{$one->name}}
+                        </td>
+                        <td>
+                            {{$one->telephone}}
+                        </td>
+                        <td>
+                            {{date('Y-m-d', strtotime($one->travel_at))}}
+                        </td>
+                        <td>
+                            {{date('Y-m-d H:i:s', strtotime($one->created_at))}}
+                        </td>
+                        <td>
+                            {{$one->ticket}}
+                        </td>
+                        <td>
+                            @if ($one->is_verify == 0)
+                            否
+                            @else
+                            是
+                            @endif
+                        </td>
+                        <td>
+                            {{$one->info}}
+                        </td>
+                        <td align="center">
+                            @if ($one->is_verify == 0)
+                            <input type="button" targetid="{{$one->id}}" value="验证" class="btn btn-xs btn-success verifyOne">
+                            @else
+                            <input type="button" targetid="{{$one->id}}" value="取消" class="btn btn-xs btn-warning unverifyOne">
+                            @endif
+                            <input type="button" targetid="{{$one->id}}" value="删除" class="btn btn-xs btn-danger delOne">
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
             </div>
             <!-- /.panel-body -->
         </div>
     </div>
 </div>
+@stop
+@section('js')
+<script>
+var table = $("#sortableTable");
+table.on('click', '.verifyOne', function(){
+    var r = confirm('确定通过验证该联系人?');
+    if(r==true){
+        var id = $(this).attr('targetid');
+        var url = '/jingdian/verifyCustomer/' + id;
+        var data = {};
+        $.ajax({
+            type: "POST",
+                url: url,
+                data: data,
+                dataType: 'json',
+                success:function(rs){
+                    if(rs.status == 0){
+                        alert('验证成功');
+                        window.location.reload();
+                    }else{
+                        alert(rs.info);
+                    }
+                }
+        });
+    }
+    return true;
+});
+
+table.on('click', '.unverifyOne', function(){
+    var r = confirm('确定取消验证该联系人?');
+    if(r==true){
+        var id = $(this).attr('targetid');
+        var url = '/jingdian/unverifyCustomer/' + id;
+        var data = {};
+        $.ajax({
+            type: "POST",
+                url: url,
+                data: data,
+                dataType: 'json',
+                success:function(rs){
+                    if(rs.status == 0){
+                        alert('取消验证成功');
+                        window.location.reload();
+                    }else{
+                        alert(rs.info);
+                    }
+                }
+        });
+    }
+    return true;
+});
+</script>
+
 @stop

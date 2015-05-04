@@ -5,7 +5,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="/">同行旅游票务管理系统</a>
+    <a class="navbar-brand" href="/">同行票务管理系统</a>
 </div>
 <!-- /.navbar-header -->
 
