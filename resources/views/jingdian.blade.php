@@ -1,25 +1,11 @@
 @extends('framework-admin')
 
 @section('content')
-{{--
 <div class="row">
-    <div class="col-lg-4">
-        <div class="panel panel-green">
-            <div class="panel-heading">
-                世界之窗 
-            </div>
-            <div class="panel-body">
-            <p>
-世界之窗位于广东省深圳市深圳湾畔，是中国著名的缩微景区，以弘扬世界文化为宗旨，是一个把世界奇观、历史遗迹、古今名胜、民间歌舞表演融为一体的人造主题公园。公园中的各个景点都按不同的比例仿建。全园分为世界广场、亚洲区、美洲区、非洲区、大洋洲区、欧洲区、雕塑园和国际街8个主题区，分别展示了法国埃菲尔铁塔、巴黎凯旋门、意大利比萨斜塔、印度泰姬陵、埃及金字塔等一百多个世界著名的文化景观和建筑奇迹。
-            </p>
-            </div>
-            <div class="panel-footer">
-            </div>
-        </div>
-        <!-- /.col-lg-4 -->
+    <div class="col-lg-12">
+        <h4 class="page-header">海洋世界</h4>
     </div>
 </div>
---}}
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">

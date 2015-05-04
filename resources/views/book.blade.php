@@ -72,7 +72,7 @@
 <script>
 $(document).ready(function(){
     $('#book').click(function(){
-        data = {};
+        var data = {};
         data['jingdian'] = $("#jingdian").val();
         data['shangjia'] = $("#shangjia").val();
         data['travel_at'] = $("#travel_at").val();
@@ -116,6 +116,7 @@ $(document).ready(function(){
                     return false;
                 },
         });
+        return false;
     });
 });
 </script>

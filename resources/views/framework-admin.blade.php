@@ -47,7 +47,6 @@
         </nav>
 
         <div id="page-wrapper">
-            @include('include.breadcrumb')
             @yield('content')
         </div>
         <!-- /#page-wrapper -->
