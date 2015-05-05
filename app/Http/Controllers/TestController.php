@@ -1,7 +1,8 @@
 <?php 
 namespace App\Http\Controllers;
 use Config, App\Customer, DB, Input, Log;
-class BookController extends Controller {
+use Agent;
+class TestController extends Controller {
 
     public function index(){
         var_dump(Agent::is('OS X'));
