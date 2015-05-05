@@ -4,6 +4,7 @@ use Config, App\Customer, DB, Input, Log;
 class JingdianController extends Controller {
 
     public function __construct(){
+        $this->middleware('auth');
         //DB::connection()->enableQueryLog();
     }
 

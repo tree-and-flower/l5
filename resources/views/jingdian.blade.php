@@ -108,6 +108,29 @@
 @section('js')
 <script>
 var table = $("#sortableTable");
+table.on('click', '.delOne', function(){
+    var r = confirm('确定删除该联系人?');
+    if(r==true){
+        var id = $(this).attr('targetid');
+        var url = '/jingdian/delCustomer/' + id;
+        var data = {};
+        $.ajax({
+            type: "POST",
+                url: url,
+                data: data,
+                dataType: 'json',
+                success:function(rs){
+                    if(rs.status == 0){
+                        alert('删除成功');
+                        window.location.reload();
+                    }else{
+                        alert(rs.info);
+                    }
+                }
+        });
+    }
+    return true;
+});
 table.on('click', '.verifyOne', function(){
     var r = confirm('确定通过验证该联系人?');
     if(r==true){
