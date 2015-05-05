@@ -148,6 +148,10 @@ return [
          * 微信Service Providers
          */
         'Overtrue\LaravelWechat\ServiceProvider',
+        /*
+         * User Agent Service Providers
+         */
+        'Jenssegers\Agent\AgentServiceProvider',
 
 	],
 
@@ -200,6 +204,10 @@ return [
          * 微信alias
          */
         'Wechat' => 'Overtrue\LaravelWechat\Facade',
+        /*
+         * User Agent alias
+         */
+        'Agent' => 'Jenssegers\Agent\Facades\Agent',
 
 	],
 

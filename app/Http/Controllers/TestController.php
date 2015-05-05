@@ -3,6 +3,10 @@ namespace App\Http\Controllers;
 use Config, App\Customer, DB, Input, Log;
 class BookController extends Controller {
 
+    public function index(){
+        var_dump(Agent::is('OS X'));
+    }
+
     public function getBook($jingdian=0,$shangjia=0){
         $jingdianConf = Config::get('tongxing.jingdian');
         $shangjiaConf = Config::get('tongxing.shangjia');

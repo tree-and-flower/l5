@@ -2938,7 +2938,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/overtrue/laravel-wechat/zipball/d7b4a6da870574b0cb2763347f4625405a7f76fc",
+            "url": "https://api.github.com/repos/overtrue/laravel-wechat/zipball/cf5e051ad9bffc4797ebe1912d39d85f0f6f3c69",
             "reference": "d7b4a6da870574b0cb2763347f4625405a7f76fc",
             "shasum": ""
         },
@@ -2970,6 +2970,114 @@
             "sdk",
             "wechat",
             "weixin"
+        ]
+    },
+    {
+        "name": "mobiledetect/mobiledetectlib",
+        "version": "2.8.13",
+        "version_normalized": "2.8.13.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/serbanghita/Mobile-Detect.git",
+            "reference": "fc81cb582c9cd9024a16e0698c02b6d3cb0229df"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/serbanghita/Mobile-Detect/zipball/fc81cb582c9cd9024a16e0698c02b6d3cb0229df",
+            "reference": "fc81cb582c9cd9024a16e0698c02b6d3cb0229df",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.0.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "dev-master",
+            "johnkary/phpunit-speedtrap": "~1.0@dev",
+            "phpunit/phpunit": "*"
+        },
+        "time": "2015-04-25 20:10:52",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "Mobile_Detect.php"
+            ],
+            "psr-0": {
+                "Detection": "namespaced/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Serban Ghita",
+                "email": "serbanghita@gmail.com",
+                "homepage": "http://mobiledetect.net",
+                "role": "Developer"
+            }
+        ],
+        "description": "Mobile_Detect is a lightweight PHP class for detecting mobile devices. It uses the User-Agent string combined with specific HTTP headers to detect the mobile environment.",
+        "homepage": "https://github.com/serbanghita/Mobile-Detect",
+        "keywords": [
+            "detect mobile devices",
+            "mobile",
+            "mobile detect",
+            "mobile detector",
+            "php mobile detect"
+        ]
+    },
+    {
+        "name": "jenssegers/agent",
+        "version": "v2.1.6",
+        "version_normalized": "2.1.6.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/jenssegers/laravel-agent.git",
+            "reference": "2ef2718b8461f319ffd354991c55c3e8cb783a6a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/jenssegers/laravel-agent/zipball/2ef2718b8461f319ffd354991c55c3e8cb783a6a",
+            "reference": "2ef2718b8461f319ffd354991c55c3e8cb783a6a",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/support": "4.*|5.*",
+            "mobiledetect/mobiledetectlib": "2.*",
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "satooshi/php-coveralls": "*"
+        },
+        "time": "2015-02-26 10:05:23",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Jenssegers\\Agent\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jens Segers",
+                "homepage": "http://jenssegers.be"
+            }
+        ],
+        "description": "A user agent class for Laravel",
+        "keywords": [
+            "Agent",
+            "browser",
+            "laravel",
+            "mobile",
+            "platform",
+            "user agent",
+            "useragent"
         ]
     }
 ]
