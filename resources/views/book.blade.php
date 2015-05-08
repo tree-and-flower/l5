@@ -2,62 +2,66 @@
 
 @section('content')
 <div class="container">
-<div class="row">
-    <div class="col-md-4 col-md-offset-4">
-        <div class="book-panel panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">欢迎使用同行网预约系统</h3>
-            </div>
-            <div class="panel-body">
-                <form role="form" method="POST">
+                <form class="from-horizontal book-form"   method="POST">
+                    <h3 class="">欢迎使用同行网预约系统</h3>
                     <fieldset>
-                        <div class="form-group">
+                        <div class="control-group">
                             <label class="control-label">景点名称</label>
-                            <select class="form-control" name="jingdian" id="jingdian">
-                            @foreach ($jingdianConf as $k => $v)
-                            <option value="{{$k}}" @if($k == $jingdian)selected @endif>{{$v}}</option>
-                            @endforeach
-                            </select>
+                            <div class="controls">
+                                <select class="input-block-level" name="jingdian" id="jingdian">
+                                @foreach ($jingdianConf as $k => $v)
+                                <option value="{{$k}}" @if($k == $jingdian)selected @endif>{{$v}}</option>
+                                @endforeach
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group">
+                        <div class="control-group">
                             <label class="control-label">商家名称</label>
-                            <select class="form-control" name="shangjia" id="shangjia">
-                            @foreach ($shangjiaConf as $k => $v)
-                            <option value="{{$k}}" @if($k == $shangjia)selected @endif>{{$v}}</option>
-                            @endforeach
-                            </select>
+                            <div class="controls">
+                                <select class="input-block-level" name="shangjia" id="shangjia">
+                                @foreach ($shangjiaConf as $k => $v)
+                                <option value="{{$k}}" @if($k == $shangjia)selected @endif>{{$v}}</option>
+                                @endforeach
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group">
+                        <div class="control-group">
                             <label class="control-label">出行日期</label>
-                            <input class="form-control" placeholder="点击选择出行日期" style="background-color:#FFF" name="travel_at" id="travel_at" type="text" readonly="readonly" >
+                            <div class="controls">
+                                <input class="input-block-level" placeholder="点击选择出行日期" style="background-color:#FFF" name="travel_at" id="travel_at" type="text" readonly="readonly" >
+                            </div>
                         </div>
-                        <div class="form-group">
+                        <div class="control-group">
                             <label class="control-label">主要联系人</label>
-                            <input class="form-control" placeholder="请输入主要联系人姓名" name="name" id="name" type="text">
+                            <div class="controls">
+                            <input class="input-block-level" placeholder="请输入主要联系人姓名" name="name" id="name" type="text">
+                            </div>
                         </div>
-                        <div class="form-group">
+                        <div class="control-group">
                             <label class="control-label">手机</label>
-                            <input class="form-control" placeholder="请输入主要联系人手机" name="telephone" id="telephone" type="text">
+                            <div class="controls">
+                                <input class="input-block-level" placeholder="请输入主要联系人手机" name="telephone" id="telephone" type="text">
+                            </div>
                         </div>
-                        <div class="form-group">
+                        <div class="control-group">
                             <label class="control-label">团购券号(多个券号以逗号，分隔)</label>
-                            <textarea class="form-control" rows="3" name="ticket" id="ticket"  placeholder="多个券号以逗号分隔"></textarea>
+                            <div class="controls">
+                                <textarea class="input-block-level" rows="3" name="ticket" id="ticket"  placeholder="多个券号以逗号分隔"></textarea>
+                            </div>
                         </div>
-                        <div class="form-group">
+                        <div class="control-group">
                             <label class="control-label">备注(可填写人数信息)</label>
-                            <textarea class="form-control" rows="2" name="info" id="info" placeholder="备注信息"></textarea>
+                            <div class="controls">
+                                <textarea class="input-block-level" rows="2" name="info" id="info" placeholder="备注信息"></textarea>
+                            </div>
                         </div>
-                        <button type="button" id="book"  class="btn btn-lg btn-warning btn-block">立即预约</button>
+                        <button type="button" id="book"  class="btn btn-large btn-warning btn-block">立即预约</button>
                     </fieldset>
                 </form>
-            </div>
-        </div>
-    </div>
-</div>
 </div>
 @endsection
 @section('js')
-<script type="text/javascript" src="/js/laydate.js"></script>
+<script type="text/javascript" src="/js/laydate/laydate.js"></script>
 <script type="text/javascript">
 !function(){
     laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库

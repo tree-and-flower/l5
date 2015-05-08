@@ -11,7 +11,7 @@ class TestController extends Controller {
     public function getBook($jingdian=0,$shangjia=0){
         $jingdianConf = Config::get('tongxing.jingdian');
         $shangjiaConf = Config::get('tongxing.shangjia');
-        return view('book', ['jingdianConf' => $jingdianConf, 'shangjiaConf' => $shangjiaConf, 'jingdian' => $jingdian, 'shangjia' => $shangjia]);
+        return view('book-new', ['jingdianConf' => $jingdianConf, 'shangjiaConf' => $shangjiaConf, 'jingdian' => $jingdian, 'shangjia' => $shangjia]);
     }
     public function postBook(){
         $res['status'] = 0;
