@@ -20,6 +20,10 @@ class JingdianController extends Controller {
         if (-1 != $is_verify) {
             $where['is_verify'] = $is_verify;
         }
+        $is_refund = Input::get('is_refund', -1);
+        if (-1 != $is_refund) {
+            $where['is_refund'] = $is_refund;
+        }
         $where['is_del'] = 0;
         $objBuiler = Customer::where($where);
         $name = Input::get('name', '');
@@ -46,6 +50,7 @@ class JingdianController extends Controller {
             'jingdian' => $jingdian, 
             'shangjia' => $shangjia,
             'is_verify' => $is_verify,
+            'is_refund' => $is_refund,
             'name' => $name,
             'telephone' => $telephone,
             'customers' => $customers,
@@ -84,6 +89,27 @@ class JingdianController extends Controller {
         $res['status'] = 0;
         $res['info']   = '';
         $affectedRows = Customer::where('id', $id)->update(['is_verify' => 0]);
+        if( ! $affectedRows) {
+            $res['status'] = -1;
+            $res['info'] = '取消验证失败';
+        }
+        echo json_encode($res);
+    }
+
+    public function postRefundCustomer($id){
+        $res['status'] = 0;
+        $res['info']   = '';
+        $affectedRows = Customer::where('id', $id)->update(['is_refund' => 1]);
+        if( ! $affectedRows) {
+            $res['status'] = -1;
+            $res['info'] = '验证失败';
+        }
+        echo json_encode($res);
+    }
+    public function postUnrefundCustomer($id){
+        $res['status'] = 0;
+        $res['info']   = '';
+        $affectedRows = Customer::where('id', $id)->update(['is_refund' => 0]);
         if( ! $affectedRows) {
             $res['status'] = -1;
             $res['info'] = '取消验证失败';

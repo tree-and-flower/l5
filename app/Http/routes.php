@@ -19,6 +19,8 @@ Route::get('jingdian/{jingdian?}', 'JingdianController@getJingdian')->where(['ji
 Route::post('jingdian/delCustomer/{id}', 'JingdianController@postDelCustomer')->where(['id' => '[0-9]+']);
 Route::post('jingdian/verifyCustomer/{id}', 'JingdianController@postVerifyCustomer')->where(['id' => '[0-9]+']);
 Route::post('jingdian/unverifyCustomer/{id}', 'JingdianController@postUnverifyCustomer')->where(['id' => '[0-9]+']);
+Route::post('jingdian/refundCustomer/{id}', 'JingdianController@postRefundCustomer')->where(['id' => '[0-9]+']);
+Route::post('jingdian/unrefundCustomer/{id}', 'JingdianController@postUnrefundCustomer')->where(['id' => '[0-9]+']);
 //no need auth
 Route::get('book/{jingdian?}/{shangjia?}', 'BookController@getBook')->where(['jingdian' => '[0-9]+', 'shangjia' => '[0-9]+']);
 Route::post('book', 'BookController@postBook');
