@@ -111,7 +111,6 @@ table.on('click', '.delOne', function(){
                 dataType: 'json',
                 success:function(rs){
                     if(rs.status == 0){
-                        alert('删除成功');
                         window.location.reload();
                     }else{
                         alert(rs.info);
@@ -134,7 +133,6 @@ table.on('click', '.verifyOne', function(){
                 dataType: 'json',
                 success:function(rs){
                     if(rs.status == 0){
-                        alert('验证成功');
                         window.location.reload();
                     }else{
                         alert(rs.info);
@@ -158,7 +156,6 @@ table.on('click', '.unverifyOne', function(){
                 dataType: 'json',
                 success:function(rs){
                     if(rs.status == 0){
-                        alert('取消验证成功');
                         window.location.reload();
                     }else{
                         alert(rs.info);
