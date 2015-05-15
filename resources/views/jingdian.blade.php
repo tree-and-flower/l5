@@ -38,15 +38,13 @@
                 <thead>
                     <tr>
                         <th>id</th>
-                        <th>商家</th>
-                        <th>联系人</th>
-                        <th>手机</th>
-                        <th>出行日期</th>
+                        <th style="width:50px">商家</th>
+                        <th style="width:80px">联系人/手机</th>
+                        <th style="width:90px">出行日期</th>
                         <th>下单日期</th>
-                        <th>卷号</th>
-                        <th> 验证</th>
-                        <th>备注</th>
-                        <th class="op" style="width:120px">操作</th>
+                        <th style="width:100px">卷号</th>
+                        <th style="width:70px">备注</th>
+                        <th class="op">操作</th>
                     </tr>
                 </thead>
                 <tbody id="sortableTable">
@@ -57,12 +55,10 @@
                             {{$one->id}}
                         </td>
                         <td>
-                            {{$shangjiaConf[$one->shangjia]}}
+                            {{str_limit($shangjiaConf[$one->shangjia], 2, '')}}
                         </td>
                         <td>
                             {{$one->name}}
-                        </td>
-                        <td>
                             {{$one->telephone}}
                         </td>
                         <td>
@@ -73,13 +69,6 @@
                         </td>
                         <td>
                             {{$one->ticket}}
-                        </td>
-                        <td>
-                            @if ($one->is_verify == 0)
-                            否
-                            @else
-                            是
-                            @endif
                         </td>
                         <td>
                             {{$one->info}}
@@ -97,6 +86,7 @@
                 </tbody>
             </table>
         </div>
+        {!! $customers->appends($appends)->render() !!}
     </div>
 </div>
             </div>

@@ -1,6 +1,7 @@
 <?php 
 namespace App\Http\Controllers;
 use Config, App\Customer, DB, Input, Log;
+use Request;
 class JingdianController extends Controller {
 
     public function __construct(){
@@ -31,9 +32,14 @@ class JingdianController extends Controller {
         }
         $orderBy = Input::get('orderBy', 'created_at desc');
         list($column, $order) = explode(' ', $orderBy);
-        $customers = $objBuiler->orderBy($column, $order)->get();
+        $customers = $objBuiler->orderBy($column, $order)->paginate(50);
         $jingdianConf = Config::get('tongxing.jingdian');
         $shangjiaConf = Config::get('tongxing.shangjia');
+        //分页查询字符串
+        $request_uri = $_SERVER['REQUEST_URI'];
+        $info = parse_url($request_uri);
+        $appends = Request::all();
+        unset($appends['page']);
         $with = [
             'jingdianConf' => $jingdianConf, 
             'shangjiaConf' => $shangjiaConf, 
@@ -43,6 +49,7 @@ class JingdianController extends Controller {
             'name' => $name,
             'telephone' => $telephone,
             'customers' => $customers,
+            'appends'   => $appends,
         ];
         /*
         $queries = DB::getQueryLog();

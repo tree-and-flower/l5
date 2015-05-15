@@ -6,6 +6,7 @@
 
 body {
     background-color: #f8f8f8;
+    font-size:13px;
 }
 
 #wrapper {
@@ -21,8 +22,8 @@ body {
 @media(min-width:768px) {
     #page-wrapper {
         position: inherit;
-        margin: 0 0 0 250px;
-        padding: 0 30px;
+        margin: 0 0 0 180px;
+        padding: 0 15px;
         border-left: 1px solid #e7e7e7;
     }
 }
@@ -131,7 +132,7 @@ body {
     .sidebar {
         z-index: 1;
         position: absolute;
-        width: 250px;
+        width: 180px;
         margin-top: 51px;
     }
 
