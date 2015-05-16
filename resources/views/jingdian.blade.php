@@ -87,10 +87,11 @@
                             @endif
 
                             @if ($one->is_refund == 0)
-                            <input type="button" targetid="{{$one->id}}" value="退款" class="btn btn-xs btn-success refundOne">
+                            <input type="button" targetid="{{$one->id}}" value="退款" class="btn btn-xs btn-info refundOne">
                             @else
                             <input type="button" targetid="{{$one->id}}" value="取退" class="btn btn-xs btn-warning unrefundOne">
                             @endif
+                            <a href="/customer/edit/{{$one->id}}" class="btn btn-xs btn-primary editOne">编辑</a>
                             <input type="button" targetid="{{$one->id}}" value="删除" class="btn btn-xs btn-danger delOne">
                         </td>
                     </tr>
@@ -114,7 +115,7 @@ table.on('click', '.delOne', function(){
     var r = confirm('确定删除该联系人?');
     if(r==true){
         var id = $(this).attr('targetid');
-        var url = '/jingdian/delCustomer/' + id;
+        var url = '/customer/delCustomer/' + id;
         var data = {};
         $.ajax({
             type: "POST",
@@ -136,7 +137,7 @@ table.on('click', '.verifyOne', function(){
     var r = confirm('确定通过验证该联系人?');
     if(r==true){
         var id = $(this).attr('targetid');
-        var url = '/jingdian/verifyCustomer/' + id;
+        var url = '/customer/verifyCustomer/' + id;
         var data = {};
         $.ajax({
             type: "POST",
@@ -159,7 +160,7 @@ table.on('click', '.unverifyOne', function(){
     var r = confirm('确定取消验证该联系人?');
     if(r==true){
         var id = $(this).attr('targetid');
-        var url = '/jingdian/unverifyCustomer/' + id;
+        var url = '/customer/unverifyCustomer/' + id;
         var data = {};
         $.ajax({
             type: "POST",
@@ -182,7 +183,7 @@ table.on('click', '.refundOne', function(){
     var r = confirm('确定退款该联系人?');
     if(r==true){
         var id = $(this).attr('targetid');
-        var url = '/jingdian/refundCustomer/' + id;
+        var url = '/customer/refundCustomer/' + id;
         var data = {};
         $.ajax({
             type: "POST",
@@ -205,7 +206,7 @@ table.on('click', '.unrefundOne', function(){
     var r = confirm('确定取消退款该联系人?');
     if(r==true){
         var id = $(this).attr('targetid');
-        var url = '/jingdian/unrefundCustomer/' + id;
+        var url = '/customer/unrefundCustomer/' + id;
         var data = {};
         $.ajax({
             type: "POST",

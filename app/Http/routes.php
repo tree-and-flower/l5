@@ -15,12 +15,18 @@ Route::get('test', 'TestController@index');
 //auth
 Route::get('/', 'HomeController@index');
 Route::get('home', 'HomeController@index');
-Route::get('jingdian/{jingdian?}', 'JingdianController@getJingdian')->where(['jingdian' => '[0-9]+']);
-Route::post('jingdian/delCustomer/{id}', 'JingdianController@postDelCustomer')->where(['id' => '[0-9]+']);
-Route::post('jingdian/verifyCustomer/{id}', 'JingdianController@postVerifyCustomer')->where(['id' => '[0-9]+']);
-Route::post('jingdian/unverifyCustomer/{id}', 'JingdianController@postUnverifyCustomer')->where(['id' => '[0-9]+']);
-Route::post('jingdian/refundCustomer/{id}', 'JingdianController@postRefundCustomer')->where(['id' => '[0-9]+']);
-Route::post('jingdian/unrefundCustomer/{id}', 'JingdianController@postUnrefundCustomer')->where(['id' => '[0-9]+']);
+//
+Route::get('customer/jingdian/{jingdian?}', 'CustomerController@getJingdian')->where(['jingdian' => '[0-9]+']);
+//
+Route::post('customer/delCustomer/{id}', 'CustomerController@postDelCustomer')->where(['id' => '[0-9]+']);
+Route::post('customer/verifyCustomer/{id}', 'CustomerController@postVerifyCustomer')->where(['id' => '[0-9]+']);
+Route::post('customer/unverifyCustomer/{id}', 'CustomerController@postUnverifyCustomer')->where(['id' => '[0-9]+']);
+Route::post('customer/refundCustomer/{id}', 'CustomerController@postRefundCustomer')->where(['id' => '[0-9]+']);
+Route::post('customer/unrefundCustomer/{id}', 'CustomerController@postUnrefundCustomer')->where(['id' => '[0-9]+']);
+//edit
+Route::get('customer/edit/{id}', 'CustomerController@getEdit')->where(['id' => '[0-9]+']);
+Route::post('customer/edit', 'CustomerController@postEdit');
+
 //no need auth
 Route::get('book/{jingdian?}/{shangjia?}', 'BookController@getBook')->where(['jingdian' => '[0-9]+', 'shangjia' => '[0-9]+']);
 Route::post('book', 'BookController@postBook');

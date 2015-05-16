@@ -38,7 +38,7 @@
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label">手机</label>
+                            <label class="control-label">手机(用来接收短信，请务必正确填写)</label>
                             <div class="controls">
                                 <input class="input-block-level" placeholder="请输入主要联系人手机" name="telephone" id="telephone" type="text">
                             </div>
@@ -68,7 +68,7 @@
     laydate({
         elem: '#travel_at',
             festival: true, //显示节日
-            min: laydate.now(+1), 
+            min: laydate.now(0), 
     });
 }();
 

@@ -2,13 +2,14 @@
 namespace App\Http\Controllers;
 use Config, App\Customer, DB, Input, Log;
 use Request;
-class JingdianController extends Controller {
+class CustomerController extends Controller {
 
     public function __construct(){
         $this->middleware('auth');
         //DB::connection()->enableQueryLog();
     }
 
+    //景点客户信息
     public function getJingdian($jingdian=1){
         $where = [];
         $where['jingdian'] = $jingdian;
@@ -63,7 +64,7 @@ class JingdianController extends Controller {
         return view('jingdian', $with);
         
     }
-
+    //删除接口
     public function postDelCustomer($id){
         $res['status'] = 0;
         $res['info']   = '';
@@ -74,7 +75,7 @@ class JingdianController extends Controller {
         }
         echo json_encode($res);
     }
-
+    //验证接口
     public function postVerifyCustomer($id){
         $res['status'] = 0;
         $res['info']   = '';
@@ -85,6 +86,7 @@ class JingdianController extends Controller {
         }
         echo json_encode($res);
     }
+    //取消验证接口
     public function postUnverifyCustomer($id){
         $res['status'] = 0;
         $res['info']   = '';
@@ -95,7 +97,7 @@ class JingdianController extends Controller {
         }
         echo json_encode($res);
     }
-
+    //退款接口
     public function postRefundCustomer($id){
         $res['status'] = 0;
         $res['info']   = '';
@@ -106,6 +108,7 @@ class JingdianController extends Controller {
         }
         echo json_encode($res);
     }
+    //取消退款接口
     public function postUnrefundCustomer($id){
         $res['status'] = 0;
         $res['info']   = '';
@@ -115,5 +118,17 @@ class JingdianController extends Controller {
             $res['info'] = '取消验证失败';
         }
         echo json_encode($res);
+    }
+    //客户编辑
+    public function getEdit($id){
+        $id = intval($id);
+        if($id <= 0){
+            exit('客户ID不正确');
+        }
+        echo '<pre>';print_r(Customer::where('id', $id)->get());
+        
+    }
+    public function postEdit($id){
+        
     }
 }

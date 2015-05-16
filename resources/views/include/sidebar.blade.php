@@ -16,11 +16,11 @@
                 <a href="/home"><i class="fa fa-dashboard fa-fw"></i> 首页</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-sitemap fa-fw"></i> 景点管理<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-sitemap fa-fw"></i> 客户管理<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         @foreach (Config::get('tongxing.jingdian') as $k => $v) 
                         <li>
-                            <a href="/jingdian/{{$k}}">{{$v}}</a>
+                            <a href="/customer/jingdian/{{$k}}">{{$v}}</a>
                         </li>
                         @endforeach
                     </ul>
