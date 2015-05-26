@@ -145,10 +145,6 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
         /*
-         * 微信Service Providers
-         */
-        'Overtrue\LaravelWechat\ServiceProvider',
-        /*
          * User Agent Service Providers
          */
         'Jenssegers\Agent\AgentServiceProvider',
@@ -200,10 +196,6 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
-        /*
-         * 微信alias
-         */
-        'Wechat' => 'Overtrue\LaravelWechat\Facade',
         /*
          * User Agent alias
          */

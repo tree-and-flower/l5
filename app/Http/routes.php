@@ -27,21 +27,10 @@ Route::post('customer/unrefundCustomer/{id}', 'CustomerController@postUnrefundCu
 Route::get('customer/edit/{id}', 'CustomerController@getEdit')->where(['id' => '[0-9]+']);
 Route::post('customer/edit', 'CustomerController@postEdit');
 
-//no need auth
-Route::get('book/{jingdian?}/{shangjia?}', 'BookController@getBook')->where(['jingdian' => '[0-9]+', 'shangjia' => '[0-9]+']);
-Route::post('book', 'BookController@postBook');
-
-
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
-//微信
-Route::group(array('prefix' => 'wechat'),function()
-{
-    Route::any('/', 'WechatController@serve');
-    Route::get('/setMenu', 'WechatController@setMenu');
-});
 //404
 Route::get('404', function()
 {

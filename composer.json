@@ -6,7 +6,6 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "5.0.*",
-		"overtrue/laravel-wechat": "dev-master",
 		"jenssegers/agent": "^2.1"
 	},
 	"require-dev": {

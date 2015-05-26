@@ -164,9 +164,7 @@ class FilesystemAdapter implements FilesystemContract, CloudFilesystemContract {
 	 */
 	public function move($from, $to)
 	{
-		$this->driver->copy($from, $to);
-
-		$this->driver->delete($from);
+		$this->driver->rename($from, $to);
 	}
 
 	/**
@@ -245,10 +243,9 @@ class FilesystemAdapter implements FilesystemContract, CloudFilesystemContract {
 	 * Get all (recursive) of the directories within a given directory.
 	 *
 	 * @param  string|null  $directory
-	 * @param  bool  $recursive
 	 * @return array
 	 */
-	public function allDirectories($directory = null, $recursive = false)
+	public function allDirectories($directory = null)
 	{
 		return $this->directories($directory, true);
 	}
