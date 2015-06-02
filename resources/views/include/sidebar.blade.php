@@ -30,7 +30,7 @@
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 用户管理<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="flot.html">用户管理</a>
+                        <a href="/users">用户管理</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->

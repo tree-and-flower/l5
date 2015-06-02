@@ -125,10 +125,52 @@ class CustomerController extends Controller {
         if($id <= 0){
             exit('客户ID不正确');
         }
-        echo '<pre>';print_r(Customer::where('id', $id)->get());
+        $jingdianConf = Config::get('tongxing.jingdian');
+        $shangjiaConf = Config::get('tongxing.shangjia');
+        $customer = Customer::where('id', $id)->get();
+        if (count($customer) > 0) {
+            $customer = $customer[0];
+        } else {
+            exit('客户ID不正确');
+        }
+        $with = [
+            'jingdianConf' => $jingdianConf, 
+            'shangjiaConf' => $shangjiaConf, 
+            'customer'     => $customer,
+        ];
+        return view('editCustomer', $with);
         
     }
-    public function postEdit($id){
-        
+    public function postEdit(){
+        $res['status'] = 0;
+        $res['info']   = '';
+        $data = Input::all();
+        $id       = $data['id'];
+        $jingdian = $data['jingdian'];
+        $shangjia = $data['shangjia'];
+        $travel_at = $data['travel_at'];
+        $name = trim($data['name']); 
+        if($name == ''){
+            $res['status'] = 1;
+            $res['info'] = '主要联系人姓名不能为空';
+        }
+        $telephone = trim($data['telephone']); 
+        $ticket = trim($data['ticket']); 
+        if($ticket == ''){
+            $res['status'] = 1;
+            $res['info'] = '团购券号不能为空';
+        }
+        $info = trim($data['info']);
+        $customer = [
+                'jingdian' => $jingdian,
+                'shangjia' => $shangjia,
+                'travel_at' => $travel_at,
+                'name' => $name,
+                'telephone' => $telephone,
+                'ticket' => $ticket,
+                'info' => $info,
+        ]; 
+        Customer::where('id', $id)->update($customer);
+        echo json_encode($res);
     }
 }
