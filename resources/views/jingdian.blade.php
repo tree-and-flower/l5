@@ -80,19 +80,20 @@
                             {{$one->info}}
                         </td>
                         <td align="center">
+                            <div class="btn-group">
                             @if ($one->is_verify == 0)
                             <input type="button" targetid="{{$one->id}}" value="验证" class="btn btn-xs btn-success verifyOne">
                             @else
                             <input type="button" targetid="{{$one->id}}" value="取验" class="btn btn-xs btn-warning unverifyOne">
                             @endif
-
+                            <a href="/customer/edit/{{$one->id}}" target="_blank" class="btn btn-xs btn-primary editOne">编辑</a>
                             @if ($one->is_refund == 0)
                             <input type="button" targetid="{{$one->id}}" value="退款" class="btn btn-xs btn-info refundOne">
                             @else
                             <input type="button" targetid="{{$one->id}}" value="取退" class="btn btn-xs btn-warning unrefundOne">
                             @endif
-                            <a href="/customer/edit/{{$one->id}}" class="btn btn-xs btn-primary editOne">编辑</a>
                             <input type="button" targetid="{{$one->id}}" value="删除" class="btn btn-xs btn-danger delOne">
+                            </div>
                         </td>
                     </tr>
                     @endforeach
