@@ -1,11 +1,21 @@
 <?php 
 namespace App\Http\Controllers;
+use App\User;
 use Config, App\Customer, DB, Input, Log;
 use Agent;
 class TestController extends Controller {
 
     public function index(){
-        var_dump(Agent::is('OS X'));
+        /*
+        $user = [
+            'name'     => '海洋世界',
+            'email'    => 'llg@tongxing.com',    
+            'password' => bcrypt('llg123'),
+            'role'     => '4,5,6,7,8,9,10,11,12',
+        ];
+        User::create($user);
+        */
+        //var_dump(Agent::is('OS X'));
     }
 
     public function getBook($jingdian=0,$shangjia=0){

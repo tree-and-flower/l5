@@ -16,11 +16,6 @@
             {{Auth::user()->name}}<i class="fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu dropdown-user">
-            <li><a href="#"><i class="fa fa-user fa-fw"></i> 个人信息</a>
-            </li>
-            <li><a href="#"><i class="fa fa-gear fa-fw"></i> 设置</a>
-            </li>
-            <li class="divider"></li>
             <li><a href="/auth/logout"><i class="fa fa-sign-out fa-fw"></i> 登出</a>
             </li>
         </ul>

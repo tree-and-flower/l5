@@ -27,7 +27,6 @@
         "App\\Providers\\ConfigServiceProvider",
         "App\\Providers\\EventServiceProvider",
         "App\\Providers\\RouteServiceProvider",
-        "Overtrue\\LaravelWechat\\ServiceProvider",
         "Jenssegers\\Agent\\AgentServiceProvider"
     ],
     "eager": [
@@ -47,7 +46,6 @@
         "App\\Providers\\ConfigServiceProvider",
         "App\\Providers\\EventServiceProvider",
         "App\\Providers\\RouteServiceProvider",
-        "Overtrue\\LaravelWechat\\ServiceProvider",
         "Jenssegers\\Agent\\AgentServiceProvider"
     ],
     "deferred": {

@@ -12,9 +12,7 @@
                 </div>
                 <!-- /input-group -->
             </li>
-            <li>
-                <a href="/home"><i class="fa fa-dashboard fa-fw"></i> 首页</a>
-            </li>
+            @if (Auth::user()->role == 'admin')
             <li>
                 <a href="#"><i class="fa fa-sitemap fa-fw"></i> 客户管理<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
@@ -24,7 +22,6 @@
                         </li>
                         @endforeach
                     </ul>
-                <!-- /.nav-second-level -->
             </li>
             <li>
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 用户管理<span class="fa arrow"></span></a>
@@ -33,8 +30,16 @@
                         <a href="/users">用户管理</a>
                     </li>
                 </ul>
-                <!-- /.nav-second-level -->
             </li>
+            @else
+            @foreach (Config::get('tongxing.jingdian') as $k => $v) 
+            @if (in_array($k, explode(',', Auth::user()->role)))
+            <li>
+                <a href="/jingdian/{{$k}}"><i class="fa fa-sitemap fa-fw"></i>{{$v}}</a>
+            </li>
+            @endif
+            @endforeach
+            @endif
         </ul>
     </div>
 </div>

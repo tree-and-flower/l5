@@ -1,11 +1,14 @@
 <?php 
 namespace App\Http\Controllers;
 use Config, App\Customer, DB, Input, Log;
-use Request;
+use Request,Auth;
 class CustomerController extends Controller {
 
     public function __construct(){
         $this->middleware('auth');
+        if('admin' != Auth::user()->role){
+            exit('无权限');
+        }
         //DB::connection()->enableQueryLog();
     }
 
@@ -57,13 +60,9 @@ class CustomerController extends Controller {
             'customers' => $customers,
             'appends'   => $appends,
         ];
-        /*
-        $queries = DB::getQueryLog();
-        echo '<pre>';print_r($queries);exit;
-         */
-        return view('jingdian', $with);
-        
+        return view('customer-jingdian', $with);
     }
+
     //删除接口
     public function postDelCustomer($id){
         $res['status'] = 0;
