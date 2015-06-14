@@ -1,8 +1,6 @@
 <?php 
 namespace App\Http\Controllers;
-use App\User;
 use Config, App\Customer, DB, Input, Log;
-use Agent;
 class TestController extends Controller {
 
     public function index(){

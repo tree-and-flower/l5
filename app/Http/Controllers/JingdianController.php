@@ -5,7 +5,6 @@ use Request,Auth;
 class JingdianController extends Controller {
 
     public function __construct(){
-        $this->middleware('auth');
         $this->role = Auth::user()->role;
         $this->arrRole = explode(',', $this->role);
     }

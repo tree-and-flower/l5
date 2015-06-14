@@ -1,11 +1,11 @@
 <?php 
 namespace App\Http\Controllers;
 use Config, App\Customer, DB, Input, Log;
-use Request,Auth;
+use Request;
+use Auth;
 class CustomerController extends Controller {
 
     public function __construct(){
-        $this->middleware('auth');
         if('admin' != Auth::user()->role){
             exit('无权限');
         }

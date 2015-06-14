@@ -11,25 +11,31 @@
 |
  */
 //Test
-Route::get('test', 'TestController@index');
+Route::get('test', ['uses'=>'TestController@index']);
 //auth
-Route::get('/', 'HomeController@index');
-Route::get('home', 'HomeController@index');
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/', 'HomeController@index');
+    Route::get('home', 'HomeController@index');
+});
 //管理员查看客户订单
-Route::get('customer/jingdian/{jingdian?}', 'CustomerController@getJingdian')->where(['jingdian' => '[0-9]+']);
-Route::post('customer/delCustomer/{id}', 'CustomerController@postDelCustomer')->where(['id' => '[0-9]+']);
-Route::post('customer/verifyCustomer/{id}', 'CustomerController@postVerifyCustomer')->where(['id' => '[0-9]+']);
-Route::post('customer/unverifyCustomer/{id}', 'CustomerController@postUnverifyCustomer')->where(['id' => '[0-9]+']);
-Route::post('customer/refundCustomer/{id}', 'CustomerController@postRefundCustomer')->where(['id' => '[0-9]+']);
-Route::post('customer/unrefundCustomer/{id}', 'CustomerController@postUnrefundCustomer')->where(['id' => '[0-9]+']);
-//管理员编辑客户订单
-Route::get('customer/edit/{id}', 'CustomerController@getEdit')->where(['id' => '[0-9]+']);
-Route::post('customer/edit', 'CustomerController@postEdit');
+Route::group(['prefix' => 'customer', 'middleware' => 'auth'], function(){
+    Route::get('jingdian/{jingdian?}', 'CustomerController@getJingdian')->where(['jingdian' => '[0-9]+']);
+    Route::post('delCustomer/{id}', 'CustomerController@postDelCustomer')->where(['id' => '[0-9]+']);
+    Route::post('verifyCustomer/{id}', 'CustomerController@postVerifyCustomer')->where(['id' => '[0-9]+']);
+    Route::post('unverifyCustomer/{id}', 'CustomerController@postUnverifyCustomer')->where(['id' => '[0-9]+']);
+    Route::post('refundCustomer/{id}', 'CustomerController@postRefundCustomer')->where(['id' => '[0-9]+']);
+    Route::post('unrefundCustomer/{id}', 'CustomerController@postUnrefundCustomer')->where(['id' => '[0-9]+']);
+    //管理员编辑客户订单
+    Route::get('edit/{id}', 'CustomerController@getEdit')->where(['id' => '[0-9]+']);
+    Route::post('edit', 'CustomerController@postEdit');
+});
 
 //景区管理
-Route::get('jingdian/{jingdian?}', 'JingdianController@getJingdian')->where(['jingdian' => '[0-9]+']);
-Route::post('jingdian/consumeCustomer/{id}', 'JingdianController@postConsumeCustomer')->where(['id' => '[0-9]+']);
-Route::post('jingdian/unconsumeCustomer/{id}', 'JingdianController@postUnconsumeCustomer')->where(['id' => '[0-9]+']);
+Route::group(['prefix' => 'jingdian', 'middleware' => 'auth'], function(){
+    Route::get('/{jingdian?}', 'JingdianController@getJingdian')->where(['jingdian' => '[0-9]+']);
+    Route::post('consumeCustomer/{id}', 'JingdianController@postConsumeCustomer')->where(['id' => '[0-9]+']);
+    Route::post('unconsumeCustomer/{id}', 'JingdianController@postUnconsumeCustomer')->where(['id' => '[0-9]+']);
+});
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

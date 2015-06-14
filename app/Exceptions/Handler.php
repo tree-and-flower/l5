@@ -36,6 +36,7 @@ class Handler extends ExceptionHandler {
 	 */
 	public function render($request, Exception $e)
 	{
+		//return redirect()->guest('auth/login');
 		return parent::render($request, $e);
 	}
 
