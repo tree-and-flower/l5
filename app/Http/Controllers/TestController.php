@@ -1,9 +1,21 @@
 <?php 
 namespace App\Http\Controllers;
-use Config, App\Customer, DB, Input, Log;
+use Config, App\Customer, DB, Input, Log,Request;
 class TestController extends Controller {
 
     public function index(){
+    $travel_at = Request::input('date',date('Y-m-d',strtotime('+1 day')));
+    $res = Customer::where('travel_at', $travel_at)->where('is_verify', 1)->where('telephone', '!=','17727822012')->where('telephone','!=','13422872077')->get();
+    $arrTicket = [];
+    foreach($res as $k => $v){
+        $strTicket = str_replace(['，','。','.','、'],',',$v['ticket']);
+        $strTicket = str_replace([' ',"\n"],'',$strTicket);
+        $arrTicket = array_merge(explode(',',$strTicket),$arrTicket);
+        $arrTicket = array_filter($arrTicket);
+    }
+    echo '<pre>';
+    echo '该日期出行总人数约为:'.count($arrTicket).'<br>';
+    print_r($arrTicket);    
         /*
         $user = [
             'name'     => '海洋世界',
