@@ -44,6 +44,10 @@
                                 <input class="form-control" placeholder="请输入主要联系人手机" name="telephone" id="telephone" type="text" value="{{$customer['telephone']}}">
                         </div>
                         <div class="form-group">
+                            <label class="control-label">身份证号码</label>
+                            <input class="form-control" placeholder="请输入身份证号码" name="id_card" id="id_card" type="text" value="{{$customer['id_card']}}">
+                        </div>
+                        <div class="form-group">
                             <label class="control-label">团购券号(多个券号以逗号，分隔)</label>
                                 <textarea class="form-control" rows="5" name="ticket" id="ticket"  placeholder="多个券号以逗号分隔" >{{$customer['ticket']}}</textarea>
                         </div>
@@ -99,6 +103,7 @@ $(document).ready(function(){
             alert("请输入正确的电话号码");
             return false;
         }
+        data['id_card'] = $("#id_card").val();
         data['ticket'] = $("#ticket").val();
         if(data['ticket'] == ''){
             alert("团购券号必填");

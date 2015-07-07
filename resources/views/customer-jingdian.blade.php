@@ -30,6 +30,12 @@
                     <option value="0" @if ($is_refund == 0) selected="selected" @endif>未退款</option>
                     <option value="1" @if ($is_refund == 1) selected="selected" @endif>已退款</option>
                 </select>
+                <span>消费</span>
+                <select id="isConsumeSelect" name="is_consume" class="form-control">
+                    <option value="-1" @if ($is_consume == -1) selected="selected" @endif>全部</option>
+                    <option value="0" @if ($is_consume == 0) selected="selected" @endif>未消费</option>
+                    <option value="1" @if ($is_consume == 1) selected="selected" @endif>已消费</option>
+                </select>
                 <input type="text" name="name" value="{{$name}}" class="form-control" placeholder="联系人">
                 <input type="text" name="telephone" value="{{$telephone}}" class="form-control" placeholder="手机">
                 <input type="submit" value="查询" class="btn btn-info">
@@ -49,7 +55,9 @@
                         <th style="width:90px">出行日期</th>
                         <th>下单日期</th>
                         <th style="width:100px">卷号</th>
+                        <th style="width:100px">身份证</th>
                         <th style="width:70px">备注</th>
+                        <th class="op">消费</th>
                         <th class="op">操作</th>
                     </tr>
                 </thead>
@@ -77,7 +85,15 @@
                             {{$one->ticket}}
                         </td>
                         <td>
+                            {{$one->id_card}}
+                        </td>
+                        <td>
                             {{$one->info}}
+                        </td>
+                        <td>
+                            @if ($one->is_consume == 1)
+                            已消费
+                            @endif
                         </td>
                         <td align="center">
                             <div class="btn-group">

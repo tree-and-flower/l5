@@ -20,6 +20,10 @@ class CustomerController extends Controller {
         if ($shangjia) {
             $where['shangjia'] = $shangjia;
         }
+        $is_consume = Input::get('is_consume', -1);
+        if (-1 != $is_consume) {
+            $where['is_consume'] = $is_consume;
+        }
         $is_verify = Input::get('is_verify', -1);
         if (-1 != $is_verify) {
             $where['is_verify'] = $is_verify;
@@ -53,6 +57,7 @@ class CustomerController extends Controller {
             'shangjiaConf' => $shangjiaConf, 
             'jingdian' => $jingdian, 
             'shangjia' => $shangjia,
+            'is_consume' => $is_consume,
             'is_verify' => $is_verify,
             'is_refund' => $is_refund,
             'name' => $name,
@@ -153,6 +158,7 @@ class CustomerController extends Controller {
             $res['status'] = 1;
             $res['info'] = '主要联系人姓名不能为空';
         }
+        $id_card = trim($data['id_card']); 
         $telephone = trim($data['telephone']); 
         $ticket = trim($data['ticket']); 
         if($ticket == ''){
@@ -166,6 +172,7 @@ class CustomerController extends Controller {
                 'travel_at' => $travel_at,
                 'name' => $name,
                 'telephone' => $telephone,
+                'id_card' => $id_card,
                 'ticket' => $ticket,
                 'info' => $info,
         ]; 
