@@ -12,33 +12,34 @@
             <div class="panel-heading">
             <form class="form-inline" method="get">
                 <span>商家</span>
-                <select id="shangjiaSelect" name="shangjia" class="form-control">
+                <select id="shangjiaSelect" name="shangjia" class="form-control input-sm">
                     <option value="0" @if ($shangjia == 0) selected="selected" @endif>全部</option>
                     @foreach ($shangjiaConf as $k => $v)
                         <option value="{{$k}}" @if($shangjia == $k) selected="selected" @endif>{{$v}}</option>
                     @endforeach
                 </select>
                 <span>验证</span>
-                <select id="isVerifySelect" name="is_verify" class="form-control">
+                <select id="isVerifySelect" name="is_verify" class="form-control input-sm">
                     <option value="-1" @if ($is_verify == -1) selected="selected" @endif>全部</option>
                     <option value="0" @if ($is_verify == 0) selected="selected" @endif>未验证</option>
                     <option value="1" @if ($is_verify == 1) selected="selected" @endif>已验证</option>
                 </select>
                 <span>退款</span>
-                <select id="isRefundSelect" name="is_refund" class="form-control">
+                <select id="isRefundSelect" name="is_refund" class="form-control input-sm">
                     <option value="-1" @if ($is_refund == -1) selected="selected" @endif>全部</option>
                     <option value="0" @if ($is_refund == 0) selected="selected" @endif>未退款</option>
                     <option value="1" @if ($is_refund == 1) selected="selected" @endif>已退款</option>
                 </select>
                 <span>消费</span>
-                <select id="isConsumeSelect" name="is_consume" class="form-control">
+                <select id="isConsumeSelect" name="is_consume" class="form-control input-sm">
                     <option value="-1" @if ($is_consume == -1) selected="selected" @endif>全部</option>
                     <option value="0" @if ($is_consume == 0) selected="selected" @endif>未消费</option>
                     <option value="1" @if ($is_consume == 1) selected="selected" @endif>已消费</option>
                 </select>
-                <input type="text" name="name" value="{{$name}}" class="form-control" placeholder="联系人">
-                <input type="text" name="telephone" value="{{$telephone}}" class="form-control" placeholder="手机">
-                <input type="submit" value="查询" class="btn btn-info">
+                <input type="text" name="travel_at" value="{{$travel_at}}" id="travel_at" class="form-control input-sm" readonly="readonly" placeholder="出行日期" >
+                <input type="text" name="name" value="{{$name}}" class="form-control input-sm" placeholder="联系人">
+                <input type="text" name="telephone" value="{{$telephone}}" class="form-control input-sm" placeholder="手机">
+                <input type="submit" value="查询" class="btn btn-info btn-sm">
             </form>
             </div>
             <!-- /.panel-heading -->
@@ -126,6 +127,17 @@
 </div>
 @stop
 @section('js')
+<script type="text/javascript" src="/js/laydate/laydate.js"></script>
+<script type="text/javascript">
+!function(){
+    laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
+    laydate({
+        elem: '#travel_at',
+            festival: true, //显示节日
+    });
+}();
+
+</script>
 <script>
 var table = $("#sortableTable");
 table.on('click', '.delOne', function(){

@@ -34,7 +34,13 @@ class CustomerController extends Controller {
         }
         $where['is_del'] = 0;
         $objBuiler = Customer::where($where);
+        $travel_at = Input::get('travel_at', '');
+        $travel_at = trim($travel_at);
+        if ('' != $travel_at) {
+            $objBuiler = $objBuiler->where('travel_at', 'like',  "$travel_at%");
+        }
         $name = Input::get('name', '');
+        $name = trim($name);
         if ('' !== $name) {
             $objBuiler = $objBuiler->where('name', 'like',  "%$name%");
         }
@@ -61,6 +67,7 @@ class CustomerController extends Controller {
             'is_verify' => $is_verify,
             'is_refund' => $is_refund,
             'name' => $name,
+            'travel_at' => $travel_at,
             'telephone' => $telephone,
             'customers' => $customers,
             'appends'   => $appends,
