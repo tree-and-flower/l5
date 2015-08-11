@@ -37,9 +37,11 @@
                     <option value="1" @if ($is_consume == 1) selected="selected" @endif>已消费</option>
                 </select>
                 <input type="text" name="travel_at" value="{{$travel_at}}" id="travel_at" class="form-control input-sm" readonly="readonly" placeholder="出行日期" >
+                <input type="text" name="created_at" value="{{$created_at}}" id="created_at" class="form-control input-sm" readonly="readonly" placeholder="下单日期" >
                 <input type="text" name="name" value="{{$name}}" class="form-control input-sm" placeholder="联系人">
                 <input type="text" name="telephone" value="{{$telephone}}" class="form-control input-sm" placeholder="手机">
-                <input type="submit" value="查询" class="btn btn-info btn-sm">
+                <input type="submit" name="submit" value="查询" class="btn btn-info btn-sm">
+                <input type="submit" name="submit" value="导出" class="btn btn-success btn-sm">
             </form>
             </div>
             <!-- /.panel-heading -->
@@ -133,7 +135,14 @@
     laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
     laydate({
         elem: '#travel_at',
-            festival: true, //显示节日
+        festival: true, //显示节日
+    });
+}();
+!function(){
+    laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
+    laydate({
+        elem: '#created_at',
+        festival: true, //显示节日
     });
 }();
 

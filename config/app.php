@@ -148,6 +148,8 @@ return [
          * User Agent Service Providers
          */
         'Jenssegers\Agent\AgentServiceProvider',
+        //excel
+        'Maatwebsite\Excel\ExcelServiceProvider',
 
 	],
 
@@ -200,6 +202,8 @@ return [
          * User Agent alias
          */
         'Agent' => 'Jenssegers\Agent\Facades\Agent',
+        //excel
+        'Excel' => 'Maatwebsite\Excel\Facades\Excel',
 
 	],
 

@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Config, App\Customer, DB, Input, Log;
 use Request;
 use Auth;
+use Excel;
 class CustomerController extends Controller {
 
     public function __construct(){
@@ -39,6 +40,11 @@ class CustomerController extends Controller {
         if ('' != $travel_at) {
             $objBuiler = $objBuiler->where('travel_at', 'like',  "$travel_at%");
         }
+        $created_at = Input::get('created_at', '');
+        $created_at = trim($created_at);
+        if ('' != $created_at) {
+            $objBuiler = $objBuiler->where('created_at', 'like',  "$created_at%");
+        }
         $name = Input::get('name', '');
         $name = trim($name);
         if ('' !== $name) {
@@ -50,9 +56,39 @@ class CustomerController extends Controller {
         }
         $orderBy = Input::get('orderBy', 'created_at desc');
         list($column, $order) = explode(' ', $orderBy);
-        $customers = $objBuiler->orderBy($column, $order)->paginate(50);
         $jingdianConf = Config::get('tongxing.jingdian');
         $shangjiaConf = Config::get('tongxing.shangjia');
+        $submitValue = Input::get('submit', '');
+        $submitValue = trim($submitValue);
+        if ('导出' == $submitValue) {
+            set_time_limit(0);
+            $customers = $objBuiler->orderBy($column, $order)->get();
+            $excelName = $jingdianConf[$jingdian] . date('Y-m-d-H-i-s', time());
+            $excelData = array();
+            foreach ($customers as $k => $v) {
+                $excelData[$k]['id'] = (int)$v->id;
+                $excelData[$k]['是否验证'] = (1 == $v->is_verify) ? '已验证' : '未验证';
+                $excelData[$k]['是否退款'] = (1 == $v->is_refund) ? '已退款' : '未退款';
+                if (5 == $jingdian) {//刘老根需要消费
+                    $excelData[$k]['是否消费'] = (1 == $v->is_resume) ? '已消费' : '未消费';
+                }
+                $excelData[$k]['商家'] = $shangjiaConf[((int)$v->shangjia)];
+                $excelData[$k]['联系人'] = $v->name;
+                $excelData[$k]['电话'] = $v->telephone;
+                $excelData[$k]['出行日期'] = date('Y-m-d', strtotime($v->travel_at));
+                $excelData[$k]['下单日期'] = $v->created_at->toDateTimeString();
+                $excelData[$k]['身份证'] = trim($v->id_card);
+                $excelData[$k]['团购券号'] = trim($v->ticket);
+                $excelData[$k]['备注说明'] = trim($v->info);
+            }
+            Excel::create($excelName, function($excel) use($excelData){
+                $excel->sheet('游客信息', function($sheet) use($excelData){
+                    $sheet->fromArray($excelData, null, 'A1', true);
+                });
+            })->store('xls')->export('xls'); 
+            return;
+        }
+        $customers = $objBuiler->orderBy($column, $order)->paginate(50);
         //分页查询字符串
         $request_uri = $_SERVER['REQUEST_URI'];
         $info = parse_url($request_uri);
@@ -68,6 +104,7 @@ class CustomerController extends Controller {
             'is_refund' => $is_refund,
             'name' => $name,
             'travel_at' => $travel_at,
+            'created_at' => $created_at,
             'telephone' => $telephone,
             'customers' => $customers,
             'appends'   => $appends,

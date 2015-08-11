@@ -1,6 +1,7 @@
 <?php 
 namespace App\Http\Controllers;
 use Config, App\Customer, DB, Input, Log,Request;
+use Excel;
 class TestController extends Controller {
 
     public function index(){
