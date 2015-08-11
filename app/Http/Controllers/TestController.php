@@ -5,7 +5,7 @@ class TestController extends Controller {
 
     public function index(){
     $travel_at = Request::input('date',date('Y-m-d',strtotime('+1 day')));
-    $res = Customer::where('travel_at', $travel_at)->where('is_verify', 1)->where('telephone', '!=','17727822012')->where('telephone','!=','13422872077')->get();
+    $res = Customer::where('travel_at', $travel_at)->where('jingdian', 1)->where('is_verify', 1)->where('telephone', '!=','17727822012')->where('telephone','!=','13422872077')->get();
     $arrTicket = [];
     foreach($res as $k => $v){
         $strTicket = str_replace(['，','。','.','、'],',',$v['ticket']);
